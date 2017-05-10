@@ -1,0 +1,25 @@
+<html>
+    <head>
+       <title>Form Test Index</title>
+    </head>
+    <body>
+      <h1>Index Page</h1>
+      <h3>Create a User</h3>
+      <form action='/result' method='post'>
+          Name: <input type='text' name='name'>
+          <p>Dojo Location:</p>
+          <select name="location">
+            <option value="seattle">Seattle</option>
+            <option value="sanjose">San Jose</option>
+          </select>
+          <p>Favorite Language:</p>
+          <select name="language">
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+          </select>
+          <p>Comments:</p>
+          <textarea name="comment" cols="20" rows="4"></textarea>
+          <input type='submit' value='create user'>
+      </form>
+    </body>
+</html>

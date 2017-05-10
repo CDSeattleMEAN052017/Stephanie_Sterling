@@ -1,0 +1,23 @@
+<html>
+    <head>
+       <title>Quoting Dojo</title>
+    </head>
+    <body>
+      <% if(typeof(errors) != 'undefined' ) { %>
+          <% for (var x in errors) { %>
+           <h3><%= errors[x].message %></h3>
+          <% } %>
+      <% } %>
+      <h1>Here are the quotes</h1>
+      <% for (var i = 0; i < quotes.length; i++) { %>
+          <h3>"<%= quotes[i].quote %>"</h3>
+          <p>-<%= quotes[i].name %> at <%= quotes[i].createdAt %></p>
+          <h5>#<%= quotes[i].likes %> likes<h5>
+          <form action='/like' method='post'>
+              <input type='hidden' name='id' value='<%= quotes[i]._id %>'>
+              <input type='submit' value='Like Quote'>
+          </form>
+          <hr>
+      <% } %>
+    </body>
+</html>

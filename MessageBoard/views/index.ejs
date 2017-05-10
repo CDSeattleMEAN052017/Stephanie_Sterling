@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Message Board</title>
+  </head>
+  <body>
+    <div>
+      <h2>Dojo Message Board</h2>
+    </div>
+    <% if(typeof(errors) != 'undefined' ) { %>
+        <% for (var x in errors) { %>
+         <h3><%= errors[x].message %></h3>
+        <% } %>
+    <% } %>
+    <form action='/newmessage' method='POST'>
+      Name:<input type='text' name='name'>
+      Message:<textarea name="message" cols="20" rows="4"></textarea>
+      <input type="submit" value="Post a message">
+    </form>
+    <% for (var i = 0; i < messages.length; i++) { %>
+        <h3><%= messages[i].name %> said:</h3>
+        <h2><%= messages[i].message %></h2>
+        <p>-Created at <%= messages[i].createdAt %></p>
+        <form action='/newcomment' method='post'>
+            <input type='hidden' name='id' value='<%= messages[i]._id %>'>
+            Name:<input type='text' name='comment_name'>
+            Comment:<textarea name="comment" cols="20" rows="4"></textarea>
+            <input type='submit' value='Comment'>
+        </form>
+        <h4>Comments:</h4>
+        <% for (var j = 0; j < messages[i].comments.length; j++) { %>
+          <p><%= messages[i].comments[j].commentName %> said:</p>
+          <p><%= messages[i].comments[j].comment %></p>
+          <p>-Created at <%= messages[i].comments[j].commentCreatedAt %></p>
+        <% } %>
+        <hr>
+    <% } %>
+ </body>
+</html>

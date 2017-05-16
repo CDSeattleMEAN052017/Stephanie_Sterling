@@ -1,0 +1,53 @@
+<form (submit)="onSubmit(formData)" #formData="ngForm">
+
+  First Name:<input type="text" name="first_name"
+    [(ngModel)]="newUser.first_name"
+    #first_name="ngModel"
+    minlength="2"
+    required />
+  <div [hidden]="first_name.pristine">
+    <h5>{{ first_name.errors | json }}</h5>
+    <h5>{{ first_name.errors?.minlength | json }}</h5>
+    <h5>{{ first_name.errors?.minlength?.actualLength | json }}</h5>
+  </div>
+
+  Last Name:<input id="last" type="text" name="last_name_input"
+    [(ngModel)]="newUser.last_name"
+    #last_name="ngModel"
+    minlength="2"
+    required />
+  <div [hidden]="last_name.pristine">
+    <h5>{{ last_name.errors | json }}</h5>
+    <h5>{{ last_name.errors?.minlength | json }}</h5>
+    <h5>{{ last_name.errors?.minlength?.actualLength | json }}</h5>
+  </div>
+
+  Email:<input type="text" name="email"
+    [(ngModel)]="newUser.email"
+    #email="ngModel"
+    >
+  <div [hidden]="email.pristine">
+    <h5 class="error" hidden>{{ email.errors | json }}</h5>
+  </div>
+
+  Pass:<input type="password" name="password"
+    [(ngModel)]="newUser.password"
+    #password="ngModel"
+    required />
+  <div [hidden]="password.pristine || password.valid">
+    <h5>Password error</h5>
+  </div>
+
+  Confirm Pass:<input type="password" name="con_pass"
+    [(ngModel)]="newUser.con_pass"
+    #con_pass="ngModel"
+    required />
+  <div [hidden]="con_pass.pristine || passwordsSame()">
+    <h5>Password mismatch</h5>
+  </div>
+
+  <input
+    type="submit"
+    [disabled]="!formData.form.valid"
+    />
+</form>

@@ -1,0 +1,5 @@
+<h1>Currency Formats</h1>
+<p>USD (no format) - {{currency}}</p>
+<p>EUR (currency format) - {{currency | currency:'USD'}}</p>
+<p>AUS (currency 1.2 format = 2 dec val) - {{currency | currency:'AUS':true}}</p>
+<p>CNY (1.0 = 0 dec vals if val over '0' present) - {{currency | currency:'CNY':true:'4.0-2'}}</p>

@@ -1,0 +1,44 @@
+<form (submit)="submitNote(note)" #newNoteData="ngForm">
+<input type="text" name="note"
+  [(ngModel)]="newNote.note"
+  #note="ngModel"
+  minlength = "2"
+  required />
+<div [hidden]="note.pristine || note.valid || note.viewModel === ''">
+  <h5>Must be at least {{ note.errors?.minlength?.requiredLength | json }} characters</h5>
+</div>
+<input
+  type="submit"
+  [disabled]="!newNoteData.form.valid"
+  />
+</form>
+<h1>Notes</h1>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Note</th>
+    <th>Created At</th>
+    <th>Date Updated</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let note of notes; let i = index">
+    <td>{{i + 1}}</td>
+    <td>{{note.note}}</td>
+    <td>{{note.createdAt}}</td>
+    <td>{{note.updatedAt}}</td>
+    <td><button (click)="deleteNote(i)">Delete</button><br><button (click)="chooseEdit(i)">Edit</button></td>
+  </tr>
+</table>
+<h3>Edit Note</h3>
+<form (submit)="updateNote(editNote, editNoteId)" #editNoteData="ngForm">
+<input type="text" name="editNote"
+  [(ngModel)]="noteToEdit.editNote"
+  #editNote="ngModel"
+  minlength = "2"/>
+<input type="hidden" name="editNoteId" [(ngModel)]="noteToEdit.id" #editNoteId="ngModel"/>
+<input type="submit"/>
+</form>
+<div [hidden]="editNote.pristine || editNote.valid || editNote.viewModel === ''">
+  <h5>Must be at least {{ note.errors?.minlength?.requiredLength | json }} characters</h5>
+</div>
+<button (click)="cancelEdit()">Cancel</button>

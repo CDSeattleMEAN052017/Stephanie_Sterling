@@ -1,0 +1,12 @@
+<h5>Task Details Component</h5>
+<div *ngFor="let task of tasks; let i = index" class="task">
+  <p>Task Title: {{task.title}}</p>
+  <div *ngIf="task.status === 'incomplete'" class='red'>
+    <button (click)="updateStatus(i)">Click to complete</button>
+    <p>{{task.status}}</p>
+  </div>
+  <div *ngIf="task.status === 'complete'" class='green'>
+    <button (click)="updateStatus(i)">Click to mark incomplete</button>
+    <p>{{task.status}}</p>
+  </div>
+</div>

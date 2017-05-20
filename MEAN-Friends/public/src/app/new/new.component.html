@@ -1,0 +1,9 @@
+<form (ngSubmit)="newFriend(nF)" #newFriendData="ngForm">
+  First Name: <input name="first_name" type="text" [(ngModel)]="nF.first_name"
+  #first_name="ngModel">
+  L Name: <input name="last_name" type="text" [(ngModel)]="nF.last_name"
+  #last_name="ngModel">
+  Birthday: <input name="birthday" type="date" [(ngModel)]="nF.birthday"
+  #birthday="ngModel">
+  <input type="submit" value="create">
+</form>

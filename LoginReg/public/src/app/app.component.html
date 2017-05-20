@@ -1,0 +1,9 @@
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <tr *ngFor="let user of users; let i = index">
+    <td>{{user.email}}</td>
+  </tr>
+</table>
+<app-user></app-user>

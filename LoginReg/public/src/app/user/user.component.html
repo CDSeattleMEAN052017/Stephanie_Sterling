@@ -1,0 +1,69 @@
+<form (submit)="onSubmit(newUser)" #formData="ngForm">
+
+  First Name:<input type="text" name="first_name"
+    [(ngModel)]="newUser.first_name"
+    #first_name="ngModel"
+    minlength="2"
+    required />
+  <div [hidden]="first_name.pristine">
+    <h5 *ngIf="first_name.errors != null" >Must be at least 2 characters</h5>
+  </div>
+
+  Last Name:<input id="last" type="text" name="last_name_input"
+    [(ngModel)]="newUser.last_name"
+    #last_name="ngModel"
+    minlength="2"
+    required />
+  <div [hidden]="last_name.pristine">
+    <h5 *ngIf="last_name.errors != null" >Must be at least 2 characters</h5>
+  </div>
+
+  Email:<input type="text" name="email"
+    [(ngModel)]="newUser.email"
+    #email="ngModel"
+    required />
+  <div [hidden]="email.pristine || emailValid(email.model)">
+    <h5>Invalid Email</h5>
+  </div>
+
+  Birthday: <input name="birthday" type="date"
+  [(ngModel)]="newUser.birthday"
+  #birthday="ngModel" />
+  <div [hidden]="birthday.pristine || birthday.valid">
+    <h5>Must input birthday</h5>
+  </div>
+
+  Pass:<input type="password" name="password"
+    [(ngModel)]="newUser.password"
+    #password="ngModel"
+    required />
+  <div [hidden]="password.pristine || passValid(password.model)">
+    <h5>Password failed validation - Password must be at least 8 characters and contain at least 1 number, uppercase and special character</h5>
+  </div>
+
+  Confirm Pass:<input type="password" name="con_pass"
+    [(ngModel)]="newUser.con_pass"
+    #con_pass="ngModel"
+    required />
+  <div [hidden]="con_pass.pristine || passwordsSame()">
+    <h5>Password mismatch</h5>
+  </div>
+
+  <input
+    type="submit"
+    [disabled]="!formData.form.valid"
+    />
+</form>
+<ul>
+  <li *ngFor="let error of register_errors; let i = index">
+    {{error}}
+  </li>
+</ul>
+<form (ngSubmit)="login(userLogin)" #newFriendData="ngForm">
+  Email: <input name="login_email" type="text" [(ngModel)]="userLogin.login_email"
+  #login_email="ngModel">
+  Password: <input name="login_password" type="text" [(ngModel)]="userLogin.login_password"
+  #login_password="ngModel">
+  <input type="submit" value="Login">
+</form>
+<p>{{login_errors}}</p>
